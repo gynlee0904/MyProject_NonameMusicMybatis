@@ -47,7 +47,7 @@ public class FreeInsertController extends HttpServlet {
 		FreeBoard board = new FreeBoard(freeBoardSubject, freeBoardContent);
 		int result = service.insertBoard(board);
 		if (result > 0) {
-			response.sendRedirect("/board/list.do");
+			response.sendRedirect("/board/list.do?currentPage=1");
 			
 		}else {
 			//실패하면 실패메세지 출력 

@@ -4,7 +4,6 @@ import java.sql.Connection;
 
 import org.apache.ibatis.session.SqlSession;
 
-import common.JDBCTemplate;
 import common.SqlSessionTemplate;
 import member.model.dao.MemberDAO;
 import member.model.vo.Member;
