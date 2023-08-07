@@ -34,13 +34,13 @@
                     </div>
                     <div id="e_data">
                         <table id="tbl1">
-                        <tr class="line1">
-                                <td class="td1" nowrap>이멜</td>
-								<td class="td2" nowrap colspan="2"><p id="name">
-									<input type="text" name="memberEmail"  class="ipt"  value="${ memberEmail}">
-								</td>
-                                <!-- <td class="td3" ></td> -->
-                            </tr>
+<!--                         	<tr class="line1"> -->
+<!-- 		                        <td class="td1" nowrap>이멜</td> -->
+<!-- 								<td class="td2" nowrap colspan="2"><p id="name"> -->
+									<input type="hidden" name="member-email"  class="ipt"  value="${ memberEmail}">
+<!-- 								</td> -->
+<!-- 	                            <td class="td3" ></td> -->
+<!--                           	</tr> -->
                             <tr class="line1">
                                 <td class="td1" nowrap>이름</td>
 								<td class="td2" nowrap colspan="2"><p id="name">${ memberName} (${memberGender})</p></td>
@@ -62,7 +62,7 @@
                                 </td>
 <!--                                 <td class="td3" id="td1_3x3"></td>  -->
                             </tr>
-<%--                             <input type="hidden" name="memberEmail" value="${memberEmail}"> --%>
+
 
                         </table>
                     </div>
@@ -132,7 +132,7 @@
                     </div>
                 </section>
                 <section id="main_layer5">
-                    <button id="submit_btn"> 수정 완료</button>
+                    <button type="submit" id="submit_btn"> 수정 완료</button>
                 </section>
                 </form>   
             </main> 

@@ -19,5 +19,6 @@
   <mappers>
     <mapper resource="mappers/member-mapper.xml"/> <!-- 닫는태그 생략하고 /로 대체 -->
  	<mapper resource="mappers/notice-mapper.xml"/>
+ 	<mapper resource="mappers/freeBoard-mapper.xml"/>
   </mappers>
 </configuration>

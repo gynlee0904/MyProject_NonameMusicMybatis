@@ -75,6 +75,12 @@ public class Register2Controller extends HttpServlet {
 			session.setAttribute("memberName", memberName);
 			session.setAttribute("memberGender", memberGender);
 			session.setAttribute("memberPhone", memberPhone);
+			session.setAttribute("place", place);
+			session.setAttribute("lesson", lesson);
+			session.setAttribute("lessonType", lessonType);
+			session.setAttribute("tGender", tGender);
+			session.setAttribute("myLevel", myLevel);
+			session.setAttribute("freeWords", freeWords);
 	
 			
 			//가입 성공하면 성공 페이지로 이동 -> RequestDispatcher

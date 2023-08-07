@@ -57,13 +57,18 @@ public class ModifyInfoController extends HttpServlet {
 		Member member = new Member(memberEmail, memberPw, place, lesson, lessonType, tGender, myLevel, freeWords);
 		int result = service.modifyMemberInfo(member);
 		if(result > 0) {
-			HttpSession session = request.getSession();
-			session.setAttribute("memberEmail", memberEmail);
-			
-			
-			request.getRequestDispatcher("/WEB-INF/views/member/myPage.jsp")
-			.forward(request, response);
-//			response.sendRedirect("/WEB-INF/views/member/myPage.jsp");
+//			HttpSession session = request.getSession();
+//			session.setAttribute("memberEmail", memberEmail);
+//			session.setAttribute("memberPw", memberPw);
+//			session.setAttribute("place", place);
+//			session.setAttribute("lesson", lesson);
+//			session.setAttribute("lessonType", lessonType);
+//			session.setAttribute("tGender", tGender);
+//			session.setAttribute("myLevel", myLevel);
+//			session.setAttribute("freeWords", freeWords);
+//			request.getRequestDispatcher("/WEB-INF/views/member/myPage.jsp")
+//			.forward(request, response);
+			response.sendRedirect("/member/myInfo.do?memberEmail="+memberEmail);
 			
 		}else {
 			// 실패

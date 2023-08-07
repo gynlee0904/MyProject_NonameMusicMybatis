@@ -27,7 +27,17 @@
   		SELECT * FROM NOTICE_TBL WHERE NOTICE_NO=#{noticeNo}
   	</select>
  	 
+  	<select id="getTotalCount" resultType="_int"> 
+		SELECT COUNT(*) FROM NOTICE_TBL 
+  	</select>
+  	
+  	<update id="updateNotice">
+	  	UPDATE NOTICE_TBL SET NOTICE_SUBJECT = #{noticeSubject} , NOTICE_CONTENT = #{noticeContent} WHERE NOTICE_NO =#{noticeNo}
+  	</update>
  	 
+ 	 <delete id="deleteNoticeByNo">
+  		DELETE FROM NOTICE_TBL WHERE NOTICE_NO = #{noticeNo}
+  	 </delete>
 
 
 

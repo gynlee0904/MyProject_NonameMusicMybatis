@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -64,14 +65,18 @@
 								<td class="text-align" nowrap>${ notice.noticeNo }</td> 
 								<td id="subject" nowrap><a href="/notice/detail.do?noticeNo=${ notice.noticeNo }"> ${ notice.noticeSubject } </a></td> 
 								<td class="text-align" nowrap>${ notice.noticeWriter }</td>
-								<td class="text-align" nowrap>${ notice.uploadDate }</td>
+								<td class="text-align" nowrap>${ notice.noticeDate }</td>
 								<td class="text-align" nowrap>${ notice.viewCount }</td>
 							</tr>
 							</c:forEach>
 <!-- 							<tr> -->
-<!-- 								<td colspan="5" align = "center"> -->
+<!-- 								<td colspan="2"></td> -->
+<!-- 								<td></td> -->
+<!-- 								<td align = "center"> -->
 <%-- 									${pageNavi} --%>
 <!-- 								</td> -->
+<!-- 								<td colspan="2" ></td> -->
+<!-- 								<td></td> -->
 <!-- 							</tr> -->
 						</tbody>	
 					</table>
@@ -118,6 +123,9 @@
 	                } else {
 	                    buttons[i].classList.remove('active');
 	                }
+// 	                buttons[0].active = location.href='/notice/list.do?currentPage=1'
+// 	                buttons[1].active = location.href='/board/list.do?currentPage=1'
+		//이동 하고나서 색 바꾸도록 
 	            }
 	        }
         </script>

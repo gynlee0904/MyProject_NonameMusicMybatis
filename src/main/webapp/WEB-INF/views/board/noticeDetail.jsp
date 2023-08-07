@@ -32,10 +32,31 @@
 		</ul>
 	</div>
 	<div>
-		<button type="button" name="" value="">목록으로</button>
-		<button type="button" name="" value="">수정</button>
-		<button type="button" name="" value="">삭제</button>
+		<button type="button" name="goToList" value="" onclick="noticeList();">목록으로</button>
+		<button type="button" name="modify" value="" onclick="noticeModify();">수정</button>
+		<button type="button" name="delete" value="" onclick="noticedelete();">삭제</button>
 	</div>
+	
+	
+	<script>
+	
+		function noticeList(){
+			location.href = "/notice/list.do?currentPage=1";
+		}
+	
+	
+	
+		function noticeModify(){
+			const noticeNo = '${notice.noticeNo}'
+			location.href = "/notice/modify.do?noticeNo="+noticeNo;
+		}
+		
+		function noticedelete(){
+			const noticeNo = '${notice.noticeNo}'
+			location.href = "/notice/delete.do?noticeNo="+noticeNo;
+		}
+	
+	</script>
 		
 	</body>
 </html>

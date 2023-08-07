@@ -1,32 +1,29 @@
 package notice.controller;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-
 import notice.model.service.NoticeService;
-import notice.model.vo.Notice;
-import notice.model.vo.PageData;
+
+
+
 
 
 /**
- * Servlet implementation class noticeController
+ * Servlet implementation class NoticeDeleteController
  */
-@WebServlet("/notice/list.do")
-public class NoticeListController extends HttpServlet {
+@WebServlet("/notice/delete.do")
+public class NoticeDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeListController() {
+    public NoticeDeleteController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,18 +33,15 @@ public class NoticeListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		NoticeService service = new NoticeService();
-		String page = request.getParameter("currentPage")!=null ? request.getParameter("currentPage"):"1";
-		int currentPage = Integer.parseInt(page);
-		PageData pd = service.selectNoticeList(currentPage);
-		List<Notice> nList = pd.getnList();
-		String pageNavi = pd.getPageNavi();
-		if(!nList.isEmpty()) {
-			request.setAttribute("nList", nList);
-			request.setAttribute("pageNavi", pageNavi);
-			request.getRequestDispatcher("/WEB-INF/views/board/noticeList.jsp").forward(request,  response);
+		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
+		int result = service.deleteNoticeByNo(noticeNo);
+		if(result > 0) {
+			//성공시 목록으로 이동
+			response.sendRedirect("/notice/list.do");
 		}else {
-			request.setAttribute("url", "/index.jsp");  //회원가입페이지로 이동(이동할 유알엘은 에러페이지.jsp에 있음)
-			request.setAttribute("msg", "데이터조회가 완료되지 않았습니다.");
+			//실패시 에러메세지 및 상세페이지로이동 
+			request.setAttribute("url", "/notice/detail.do");  
+			request.setAttribute("msg", "글 삭제가 완료되지 않았습니다.");
 			request.getRequestDispatcher("/WEB-INF/views/common/serviceFailed.jsp").forward(request, response);
 		}
 		
@@ -57,7 +51,8 @@ public class NoticeListController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

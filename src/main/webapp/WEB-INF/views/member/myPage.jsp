@@ -33,8 +33,8 @@
                         <img src="/resources/images/profile_pic.png" alt="사진" id="mypicture">
                     </div>
                     <div id="profile2">
-							<p id="name"><b>${member.memberName} ( ${member.memberGender} )</b></p>
-							<p> ${ member.memberEmail }</p>
+							<p id="name"><b>${memberName} ( ${memberGender} )</b></p>
+							<p> ${ memberEmail }</p>
 							<p> ${ member.memberPhone } </p>
                     </div>
 

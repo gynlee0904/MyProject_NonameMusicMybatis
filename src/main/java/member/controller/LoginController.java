@@ -57,7 +57,6 @@ public class LoginController extends HttpServlet {
 			session.setAttribute("memberEmail", mOne.getMemberEmail());
 			session.setAttribute("freeWords", member.getFreeWords());
 			
-			
 			// 로그인 성공
 			request.setAttribute("msg", "로그인 성공!");
 			request.setAttribute("url", "/index.jsp");
