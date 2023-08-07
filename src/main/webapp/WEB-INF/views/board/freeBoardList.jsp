@@ -66,7 +66,7 @@
 								<td class="text-align" nowrap>${ board.freeBoardNo }</td> 
 								<td id="subject" nowrap><a href="/board/detail.do?freeBoardNo=${ board.freeBoardNo }"> ${ board.freeBoardSubject } </a></td> 
 								<td class="text-align" nowrap>${ board.freeBoardWriter }</td>
-								<td class="text-align" nowrap>${ board.uploadDate }</td>
+								<td class="text-align" nowrap>${ board.updateDate }</td>
 								<td class="text-align" nowrap>${ board.viewCount }</td>
 							</tr>
 							</c:forEach>

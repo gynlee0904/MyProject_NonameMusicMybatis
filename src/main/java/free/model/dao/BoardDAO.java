@@ -7,75 +7,39 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.SqlSession;
+
+import common.SqlSessionTemplate;
 import free.model.vo.FreeBoard;
+import notice.model.vo.Notice;
 
 
 public class BoardDAO {
 
-	public int insertBoard(Connection conn, FreeBoard board) {
-		PreparedStatement pstmt = null;
-		int result = 0;
-		String query="INSERT INTO FREEBOARD_TBL VALUES(SEQ_FREENO.NEXTVAL,?,?,'admin', DEFAULT, DEFAULT, DEFAULT)";
-		
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, board.getFreeBoardSubject());
-			pstmt.setString(2, board.getFreeBoardContent());
-//			pstmt.setString(3, board.getFreeBoardWriter());
-			result = pstmt.executeUpdate();
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			try {
-				pstmt.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+	public int insertBoard(SqlSession session, FreeBoard board) {
+		int result = session.insert("freeBoardMapper.insertBoard",board);
 		return result;
 	}
 
 
-	public List<FreeBoard> selectBoardList(Connection conn, int currentPage) {
-		PreparedStatement pstmt = null; 
-		ResultSet rset = null;
-//		String query = "SELECT * FROM FREEBOARD_TBL ORDER BY UPLOAD_DATE DESC";
-		String query="SELECT * FROM (SELECT ROW_NUMBER()OVER(ORDER BY FREE_NO DESC)ROW_NUM,FREEBOARD_TBL.* FROM FREEBOARD_TBL)WHERE ROW_NUM BETWEEN ? AND ?";
-		List<FreeBoard>bList = new ArrayList<FreeBoard>();
+	public List<FreeBoard> selectBoardList(SqlSession session, int currentPage) {
+		int limit = 10; 
+		int offset = (currentPage-1) *limit ;
 		
-		int recordCountPerPage = 20;
-		int start = currentPage*recordCountPerPage - (recordCountPerPage -1);
-		int end = currentPage*recordCountPerPage;
-		
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, start);
-			pstmt.setInt(2, end);
-			rset = pstmt.executeQuery();
-			while(rset.next()) {
-				FreeBoard board = rsetToBoard(rset);
-				bList.add(board);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			try {
-				pstmt.close();
-				rset.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		return bList;		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		List<FreeBoard>bList = session.selectList("freeBoardMapper.selectBoardList",null, rowBounds); 
+		return bList;	
 	}
 
 
-	public String generatePageNavi(int currentPage) {
+	public FreeBoard selectOneByNo(SqlSession session, int freeBoardNo) {
+		FreeBoard board = session.selectOne("NoticeMapper.selectOneByNo",freeBoardNo);
+		return board;
+	}
+
+
+	public String generatePageNavi(SqlSession session, int currentPage) {
 		//전체게시물 102 
 		//1페이지당 보여줄 게시물의 수 : 20 
 		//page범위(네비게이터)의 수 : 6pages
@@ -125,49 +89,11 @@ public class BoardDAO {
 		}
 		return result.toString();  //int인 리절트를 스트링으로 변환해 반환
 	}
-
-
-	public FreeBoard selectOneByNo(Connection conn, int freeBoardNo) {
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		String query="SELECT * FROM FREEBOARD_TBL WHERE FREE_NO = ?";  
-		FreeBoard board = null;  
-		
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, freeBoardNo);
-			rset = pstmt.executeQuery();
-			if(rset.next()) { 
-				board = rsetToBoard(rset);
-			}   //트라이 안의 코드가 실패하면 널이 리턴됨 
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			try {
-				pstmt.close();
-				rset.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		return board;
-	}
 	
-	private FreeBoard rsetToBoard(ResultSet rset) throws SQLException {
-		FreeBoard board = new FreeBoard();
-		board.setFreeBoardNo(rset.getInt("FREE_NO"));
-		board.setFreeBoardSubject(rset.getString("FREE_SUBJECT"));
-		board.setFreeBoardContent(rset.getString("FREE_CONTENT"));
-		board.setFreeBoardWriter(rset.getString("FREE_WRITER"));
-		board.setUploadDate(rset.getTimestamp("UPLOAD_DATE"));
-		board.setUpdateDate(rset.getTimestamp("UPDATE_DATE"));
-		board.setViewCount(rset.getInt("VIEW_COUNT"));
+	
 
-		return board;
-	}
 
+	
 
 	
 	

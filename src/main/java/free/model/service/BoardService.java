@@ -3,15 +3,17 @@ package free.model.service;
 import java.sql.Connection;
 import java.util.List;
 
-import common.JDBCTemplate;
+import org.apache.ibatis.session.SqlSession;
+
+import common.SqlSessionTemplate;
 import free.model.dao.BoardDAO;
 import free.model.vo.FreeBoard;
 import free.model.vo.PageData;
+import notice.model.vo.Notice;
 
 
 
 public class BoardService {
-	private JDBCTemplate jdbcTemplate;
 	private BoardDAO bDao;
 	
 	
@@ -25,37 +27,32 @@ public class BoardService {
 	
 
 	public int insertBoard(FreeBoard board) {
-		Connection conn = jdbcTemplate.createConnection();
-		int result = bDao.insertBoard(conn, board);
-		if(result > 0) {
-			// 성공 - 커밋
-			jdbcTemplate.commit(conn);
-		}else {
-			// 실패 - 롤백
-			jdbcTemplate.rollback(conn);
-		}
-		jdbcTemplate.close(conn);
 	
-		return result;
+		SqlSession session = SqlSessionTemplate.getSqlSession();
+		int result = bDao.insertBoard(session, board);
+		if(result > 0) {
+			session.commit();
+		}else {
+			session.rollback();
+		}session.close();
+		return result; 
 	}
 
 
 	public PageData selectBoardList(int currentPage) {
-		Connection conn = jdbcTemplate.createConnection();
-		List<FreeBoard> bList = bDao.selectBoardList(conn, currentPage);
-		String pageNavi = bDao.generatePageNavi(currentPage);
+		SqlSession session = SqlSessionTemplate.getSqlSession();
+		List<FreeBoard>bList = bDao.selectBoardList(session, currentPage);
+		String pageNavi = bDao.generatePageNavi(session, currentPage);
 		PageData pd = new PageData(bList, pageNavi);
-		jdbcTemplate.close(conn);
-		return pd;
+		session.close();
+		return pd; 
 	}
 
 	
-	public FreeBoard selectOneByNo(int freeBoardNo) {
-		Connection conn = jdbcTemplate.createConnection();
-		FreeBoard board = bDao.selectOneByNo(conn, freeBoardNo);
-	
-		jdbcTemplate.close(conn);
-	
+	public FreeBoard selectOneByNo(int freeBoardNo) {	
+		SqlSession session = SqlSessionTemplate.getSqlSession();
+		FreeBoard board = bDao.selectOneByNo(session, freeBoardNo);
+		session.close();
 		return board;
 	}
 
