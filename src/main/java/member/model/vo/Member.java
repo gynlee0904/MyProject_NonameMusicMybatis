@@ -24,12 +24,7 @@ public class Member {
 	public Member() {}
 	
 	
-	public Member(String memberEmail, String memberPw) {
-		super();
-		this.memberEmail = memberEmail;
-		this.memberPw = memberPw;
-	}
-
+	
 
 
 	public Member(String memberEmail, String memberPw, String place, String lesson,
@@ -64,6 +59,21 @@ public class Member {
 		this.freeWords = freeWords;
 	}
 
+
+	
+
+	public Member(String memberPhone) {
+		super();
+		this.memberPhone = memberPhone;
+	}
+
+
+
+	public Member(String memberEmail, String memberPw) {
+		super();
+		this.memberEmail = memberEmail;
+		this.memberPw = memberPw;
+	}
 
 	public String getMemberPhone() {
 		return memberPhone;

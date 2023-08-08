@@ -29,8 +29,8 @@
                 <aside id="main-layer1">
                     <div id="board_menu1"></div>
                      <div id="menu_container">
-	                     <button class="menuBtn" id="menu_notice" onclick="toggleButton(1)">공지사항</button>
-	                     <button class="menuBtn" id="menu_free" onclick="toggleButton(2)">자유게시판</button> 
+	                     <button class="menuBtn" id="menu_notice" onclick="toggleButton(1); locate1();">공지사항</button>
+	                     <button class="menuBtn" id="menu_free" onclick="toggleButton(2); locate2();">자유게시판</button> 
 	                     <button class="menuBtn" id="menu_playing" onclick="toggleButton(3)">연주 영상</button>
 	                     <button class="menuBtn" id="menu_market" onclick="toggleButton(4)">거래게시판</button>
                      </div>
@@ -64,7 +64,7 @@
 							<c:forEach var="board" items="${requestScope.bList}">   
 							<tr>
 								<td class="text-align" nowrap>${ board.freeBoardNo }</td> 
-								<td id="subject" nowrap><a href="/board/detail.do?freeBoardNo=${ board.freeBoardNo }"> ${ board.freeBoardSubject } </a></td> 
+								<td id="subject" nowrap><a href="/board/detail.do?freeBoardNo=${ board.freeBoardNo }" class="subject"> ${ board.freeBoardSubject } </a></td> 
 								<td class="text-align" nowrap>${ board.freeBoardWriter }</td>
 								<td class="text-align" nowrap>${ board.updateDate }</td>
 								<td class="text-align" nowrap>${ board.viewCount }</td>
@@ -121,6 +121,13 @@
 	                    buttons[i].classList.remove('active');
 	                }
 	            }
+	        }
+	        
+	        function locate1 (){
+	        	location.href='/notice/list.do?currentPage=1'
+	        }
+	        function locate2 (){
+	        	location.href='/board/list.do?currentPage=1'
 	        }
         </script>
     </body>

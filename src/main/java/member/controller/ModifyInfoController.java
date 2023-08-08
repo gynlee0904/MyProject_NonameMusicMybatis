@@ -1,6 +1,8 @@
 package member.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -68,7 +70,12 @@ public class ModifyInfoController extends HttpServlet {
 //			session.setAttribute("freeWords", freeWords);
 //			request.getRequestDispatcher("/WEB-INF/views/member/myPage.jsp")
 //			.forward(request, response);
-			response.sendRedirect("/member/myInfo.do?memberEmail="+memberEmail);
+//			response.sendRedirect("/member/myInfo.do?memberEmail="+memberEmail);
+			request.setAttribute("msg", "회원정보수정 성공!");
+			request.setAttribute("url", "/member/myInfo.do?memberEmail="+memberEmail);
+			RequestDispatcher view
+			= request.getRequestDispatcher("/WEB-INF/views/common/serviceSuccess.jsp");
+			view.forward(request, response);
 			
 		}else {
 			// 실패

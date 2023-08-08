@@ -29,11 +29,11 @@
                         </div>
                         <div id="box_header2">
                             <div id="findout">
-                                <p> 홍길동 회원님의 ID는 <span><b>HGD0001@navar.com</b></span> 입니다.</p>
+                                <p> ${member.memberName}회원님의 ID는 <span><b>${member.memberEmail}</b></span> 입니다.</p>
                             </div>
                             <div id="next">
-                                <a href="./login.html"><input type="button" id="login_btn" value="로그인하기"></a>
-                                <a href=""><input type="button" id="pw_btn" value="비밀번호 찾기"></a>
+                                <a href="/member/login.do"><input type="button" id="login_btn" value="로그인하기"></a>
+                                <a href="#"><input type="button" id="pw_btn" value="비밀번호 재설정"></a>
                             </div>
                         </div>
                     </div> 

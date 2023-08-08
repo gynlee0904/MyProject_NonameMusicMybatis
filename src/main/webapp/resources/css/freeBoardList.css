@@ -154,7 +154,16 @@ main {
                 border-style : inset;
                 border : 1px solid #ccc;
               }
-
+              
+             #menu_free {
+              	color : #222;
+                background-color: #FFF;
+                width : 200px;
+                height : 40px;
+                margin: 0;
+                border-style : inset;
+                border : 1px solid #ccc;
+              }
 
 
 
@@ -174,7 +183,7 @@ main {
 
 
 	    table {
-			width : 800px;
+			width : 885px;
 			border : 1px solid black;
 			border-collapse : collapse;
 			top : 10px;
@@ -186,56 +195,78 @@ main {
 		#subject {
 			padding : 5px;
 		}
+		
+		.subject{
+			text-decoration: none;
+		}
+		.subject:link {
+	        color : #222;
+	    }
+	    .subject:visited {
+	        color : purple;
+	    }
+	    
 		.text-align {
 			text-align :center;
 		}
 		
         #table_footer{
             width : 100%;
-             display: flex;
+            display: flex;
+            margin-top : 10px; 
         }
         
-        #search {
+         #search {
             width : 30%;
             float : left;
             display: flex;
             justify-content:flex-start;
-            margin-top : 10px;
-            --margin-right: 50px;
+   
             float:left;
         }
         
         .search-box {
             display : flex;
             border : 1px solid #ccc;
-            border-radius: 4px;
+            border-radius: 3px;
             --float:left;
-            height:20px;
+            height:23px;
         
+        }
+        
+        .search-box select{
+        	outline : none;
+       		border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+            border-color : none;
         }
         
         .search-box input[type="search"]{
-            --flex-grow :1;
+            flex-grow :1;
             padding-left : 5px;
-            border :none;
+            border:gray ;
             outline : none;
-            height:10px;
-            width: 150px;
+            height:100%;
+            width: 140px;
         }
         
         .search-box button{
-            padding : 11px 20px;
             background-color: #222;
             color : #fff;
-            border:none;
+            border:gray ;
             cursor : pointer;
             --background-image: url(../images/search-removebg-preview.png);
-            background-size: cover;
+            background-size: contain;
             background-repeat: no-repeat;
-            height:20px;
+            width : 45px;
+            height:22px;
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
         }
+        
         .search-box button:active{
-            padding : 11px 20px;
             background-color: #fff;
             color : #222;
             border:gray ;
@@ -243,15 +274,21 @@ main {
             --background-image: url(../images/search-removebg-preview.png);
             background-size:cover;  
             background-repeat: no-repeat;
+            width : 45px;
             height:20px;
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
         }
         
+        
+        
          #count_nav{ 
-            background-color: pink;
+            --background-color: pink;
             width : 40%;
             float : left;
             text-align : center;
             --justify-content: space-between;
+            margin-top : 10px;
         }
         
  		
@@ -261,14 +298,23 @@ main {
             float : left;
              display: flex;
             justify-content:flex-end;
+
             
         }
         
-        #uploadBtn, #listBtn{
+        #uploadBtn {
             color : #FFF;
             background-color: #222;
             border-radius: 3px;
-
+            height:23px;
+            margin-right: 5px;
+        }
+        
+        #listBtn{
+            color : #FFF;
+            background-color: #222;
+            border-radius: 3px;
+            height:23px;
         }
     
     

@@ -23,7 +23,8 @@
 			<jsp:include page="/WEB-INF/views/include/nav.jsp"></jsp:include> 
             
             <main>
-                <form action="../member/findid2.html" method="">
+                <form action="/member/findId.do" method="post">
+                <section id=main_layer1>
                     <div id="findBox">
                         <div id="box_header1">
                             <h1>아이디 찾기</h1>
@@ -31,16 +32,18 @@
                         <div id="box_header2">
                             <div id="check_member">회원 인증</div>
                             <div id="check_phone">
-                                <input type="text" name="" id="checkNum" placeholder="휴대폰 번호를 입력하세요">
+                                <input type="text" name="checkPhone" id="checkNum" placeholder="휴대폰 번호를 입력하세요">
                             </div>
                             <div id="check_btn">
-                                <a href="./findId_2.html"><button id="btn">휴대폰인증</button></a>
+                                <button type="button" id="btn">휴대폰인증</button>
                             </div>
-            
                         </div>
                     </div>
+                </section>
+                <section id=main_layer2>
+                	<button type="submit">아이디찾기</button>
+                </section>
                 </form>
-
             </main>
             <footer></footer>
         </div>

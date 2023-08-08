@@ -43,7 +43,7 @@
                             </div>
                         </div>
                         <div id="login_footer">
-                            <a href="/findId.jsp">ID 찾기</a> /
+                            <a href="/member/findId.do?memberPhone="+${memberPhone}>ID 찾기</a> /
                             <a href="#">PW 재설정</a>
                         </div>
                     </div>

@@ -28,8 +28,8 @@
                 <aside id="main-layer1">
                     <div id="board_menu1"></div>
                      <div id="menu_container">
-	                     <button class="menuBtn" id="menu_notice" onclick="toggleButton(1)">공지사항</button>
-	                     <button class="menuBtn" id="menu_free" onclick="toggleButton(2)">자유게시판</button> 
+	                     <button class="menuBtn" id="menu_notice" onclick="toggleButton(1); locate1();">공지사항</button>
+	                     <button class="menuBtn" id="menu_free" onclick="toggleButton(2); locate2();">자유게시판</button> 
 	                     <button class="menuBtn" id="menu_playing" onclick="toggleButton(3)">연주 영상</button>
 	                     <button class="menuBtn" id="menu_market" onclick="toggleButton(4)">거래게시판</button>
                      </div>
@@ -63,8 +63,8 @@
 							<c:forEach var="notice" items="${requestScope.nList}">   
 							<tr>
 								<td class="text-align" nowrap>${ notice.noticeNo }</td> 
-								<td id="subject" nowrap><a href="/notice/detail.do?noticeNo=${ notice.noticeNo }"> ${ notice.noticeSubject } </a></td> 
-								<td class="text-align" nowrap>${ notice.noticeWriter }</td>
+								<td id="subject" nowrap><a href="/notice/detail.do?noticeNo=${ notice.noticeNo }" class="subject"> ${ notice.noticeSubject } </a></td> 
+								<td class="text-align"  nowrap>${ notice.noticeWriter }</td>
 								<td class="text-align" nowrap>${ notice.noticeDate }</td>
 								<td class="text-align" nowrap>${ notice.viewCount }</td>
 							</tr>
@@ -125,9 +125,20 @@
 	                }
 // 	                buttons[0].active = location.href='/notice/list.do?currentPage=1'
 // 	                buttons[1].active = location.href='/board/list.do?currentPage=1'
-		//이동 하고나서 색 바꾸도록 
+					//이동 하고나서 색 바꾸도록 
 	            }
 	        }
+	        
+	        function locate1 (){
+	        	location.href='/notice/list.do?currentPage=1'
+	        }
+	        function locate2 (){
+	        	location.href='/board/list.do?currentPage=1'
+	        }
+	        
+	        
+	        
+	        
         </script>
     </body>
 </html>

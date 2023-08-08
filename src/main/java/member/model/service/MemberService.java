@@ -70,6 +70,13 @@ public class MemberService {
 		return result;  
 	}
 
+	public Member selectCheckMemberId(Member member) {
+		SqlSession session = SqlSessionTemplate.getSqlSession();
+		Member mOne = mDao.selectCheckMemberId(session, member);
+		session.close();
+		return mOne;
+	}
+
 	
 
 	

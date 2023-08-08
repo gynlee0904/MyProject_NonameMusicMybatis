@@ -32,9 +32,14 @@ public class MemberDAO {
 	}
 
 
-	public Member selectOneById(SqlSession session, String memberEmail) { 
+	public Member selectOneById(SqlSession session, String memberEmail) { //마이페이지
 		Member member = session.selectOne("MemberMapper.selectOneById", memberEmail);  
 		return member;
+	}
+
+	public Member selectCheckMemberId(SqlSession session, Member member) {
+		Member mOne = session.selectOne("MemberMapper.selectCheckMemberId", member);  
+		return mOne;
 	}
 
 	

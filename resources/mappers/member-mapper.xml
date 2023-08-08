@@ -44,6 +44,10 @@
   		SELECT * FROM MEMBER_TBL WHERE MEMBER_EMAIL = #{memberEmail} AND MEMBER_PW = #{memberPw}
   	</select>
   	
+  	<select id="selectCheckMemberId" resultMap="memberResultMap">
+  		SELECT MEMBER_EMAIL, MEMBER_NAME FROM MEMBER_TBL WHERE MEMBER_PHONE = #{memberPhone}
+  	</select>
+  	
   	
   	
 

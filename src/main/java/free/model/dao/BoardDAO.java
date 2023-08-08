@@ -34,7 +34,7 @@ public class BoardDAO {
 
 
 	public FreeBoard selectOneByNo(SqlSession session, int freeBoardNo) {
-		FreeBoard board = session.selectOne("NoticeMapper.selectOneByNo",freeBoardNo);
+		FreeBoard board = session.selectOne("freeBoardMapper.selectOneByNo",freeBoardNo);
 		return board;
 	}
 
@@ -79,13 +79,13 @@ public class BoardDAO {
 	
 		StringBuilder result = new StringBuilder();
 		if(needPrev) {
-			result.append("<a href='/board/freeList.do?currentPage="+(currentPage-1)+"'>[이전]</a> ");  
+			result.append("<a href='/board/list.do?currentPage="+(currentPage-1)+"'>[이전]</a> ");  
 		}
 		for(int i = startNavi; i <= endNavi; i++) {
-			result.append("<a href='/board/freeList.do?currentPage="+i+"'>"+i+"</a>&nbsp;&nbsp;&nbsp;");  
+			result.append("<a href='/board/list.do?currentPage="+i+"'>"+i+"</a>&nbsp;&nbsp;&nbsp;");  
 		}
 		if(needNext) {
-			result.append("<a href='/board/freeList.do?currentPage="+(currentPage+1)+"'>[다음]</a>"); 
+			result.append("<a href='/board/list.do?currentPage="+(currentPage+1)+"'>[다음]</a>"); 
 		}
 		return result.toString();  //int인 리절트를 스트링으로 변환해 반환
 	}
